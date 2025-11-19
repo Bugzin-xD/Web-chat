@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Web chat</title>
+        <meta name="description" content="An new version and updated version from WhatsApp web">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="icon" href="logo.ico" type="image/x-icon">
+    </head>
+    <body>
+    
+    <div class="chat-container">
+
+        <span class="top">Conversando com <b>DANIEL</b></span>
+        
+        <textarea id="response" class="response" readonly></textarea>
+        
+        <div class="input-area">
+            <input class="message" id="chat" placeholder="Digite aqui...">
+            <button id="btnEnviar">Enviar</button>
+        </div>
+
+    </div>
+
+    <div class="creator"><span class="made">Obrigado por usar!</span></div>
+        
+    <script type="module">
+    import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+    // ⚠️ COLOQUE SUA API KEY AQUI
+    const API_KEY = "AIzaSyCHSQ9lUKTe3ISpfDtvvgaBR82rnRJIO50"; // Use sua chave privada e evite expô-la!
+
+    // Selecionamos todos os elementos
+    const input = document.getElementById("chat");
+    const btn = document.getElementById("btnEnviar");
+    const responseArea = document.getElementById("response"); // NOVO: Seleciona o textarea
+
+    // Limpa a área de resposta antes de começar
+    responseArea.value = "Aguardando sua mensagem...";
+
+    // Função principal que chama a IA
+    async function message() {
+        const textoUsuario = input.value;
+        
+        if (!textoUsuario) return;
+
+        console.log("Enviando:", textoUsuario);
+        responseArea.value = "Aguardando resposta..."; // Feedback na área de resposta
+        input.value = ""; // Limpa o input imediatamente
+        input.disabled = true;
+
+        try {
+            const genAI = new GoogleGenerativeAI(API_KEY);
+            const model = genAI.getGenerativeModel({ 
+    // Propriedade 1
+    model: "gemini-2.5-flash", 
+    
+    // Propriedade 2
+    config: {
+        systemInstruction: "Você é um assistente de chat e seu nome é Daniel. Suas respostas devem ser curtas e diretas. Não use Markdown (negrito, itálico, listas ou cabeçalhos), pois o ambiente de saída (textarea) não os renderiza corretamente."
+    }
+}); // <-- Correto: Fecha o objeto com } e termina a instrução com );
+
+            const result = await model.generateContent(textoUsuario);
+            const response = await result.response;
+            const text = response.text();
+            
+            // CORREÇÃO: Atribui o texto diretamente ao valor do textarea
+            responseArea.value = text; 
+
+        } catch (erro) {
+            console.error(erro);
+            responseArea.value = "Um erro inesperado aconteceu, por favor, tente novamente, caso o erro persista, entre em contato com o desenvolvedor!";
+            
+        } finally {
+            input.disabled = false; // Destrava o input
+            input.focus();          // Devolve o foco
+        }
+    }
+
+    // Adiciona os eventos
+    btn.addEventListener("click", message);
+    input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            message(); 
+        }
+    });
+
+</script>
+    </body>
+</html>
