@@ -93,7 +93,7 @@ button:hover {
 }
 
 .made {
-    cursor: default;
+    cursor: progress;
     border-radius: 9px;
     font-family: cursive;
     position: absolute;
@@ -110,3 +110,19 @@ button:hover {
     transform: translateY(-5px);
 
 }
+
+a{
+    text-decoration: none;
+}
+
+.credits2 {
+    position: absolute;
+    top: 95%;
+}
+
+.credits {
+    position: absolute;
+    top: 1%;
+    color: aliceblue;
+}
+
