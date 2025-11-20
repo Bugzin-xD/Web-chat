@@ -1,21 +1,18 @@
-/* style.css */
-
 /* --- 1. Reset Básico e Fundo --- */
 body {
     background-color: rgb(29, 29, 29);
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif, 'Trebuchet MS';
-    display: flex; /* Usamos flexbox no body para centralizar o container principal */
+    display: flex;
     justify-content: center;
-    align-items: flex-start; /* Alinha no topo */
+    align-items: flex-start;
     min-height: 100vh;
 }
 
-/* --- 2. Container Principal (Simula a Janela do Chat) --- */
 .chat-container {
     width: 90%;
-    max-width: 600px; /* Limita a largura para visualização em desktop */
+    max-width: 600px;
     margin-top: 30px;
     background-color: rgb(38, 38, 38);
     border-radius: 12px;
@@ -23,12 +20,10 @@ body {
     padding: 15px;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Espaço entre os elementos */
+    gap: 10px;
 }
 
-/* --- 3. Header (.top) --- */
 .top {
-    /* Removido 'position: absolute;' para manter no fluxo do container */
     color: aliceblue;
     font-size: 1.1em;
     padding-bottom: 10px;
@@ -36,35 +31,33 @@ body {
     margin-bottom: 5px;
 }
 
-/* --- 4. Área de Resposta (Textarea) --- */
+
 .response {
-    /* Corrigido: Para centralizar um bloco, use 'margin: 0 auto;' */
     width: 98%;
-    height: 300px; /* Altura padrão para a janela de resposta */
+    height: 300px;
     padding: 15px;
-    margin: 0 auto 10px auto; /* Centraliza horizontalmente e dá espaço inferior */
+    margin: 0 auto 10px auto;
     background-color: rgb(50, 50, 50);
     color: aliceblue;
     border: none;
     border-radius: 8px;
     font-size: 0.95em;
-    resize: none; /* Impede o redimensionamento */
+    resize: none;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
     cursor: not-allowed;
     font-family: sans-serif;
 }
 
-/* --- 5. Inputs e Botão (Sessão de Entrada) --- */
 .input-area {
-    display: flex; /* Organiza input e botão lado a lado */
+    display: flex;
     gap: 10px;
     padding-top: 10px;
 }
 
 .message {
-    flex-grow: 1; /* Faz o input ocupar o máximo de espaço */
+    flex-grow: 1;
     padding: 10px 15px;
-    border-radius: 20px; /* Borda mais arredondada */
+    border-radius: 20px;
     border: 1px solid rgb(70, 70, 70);
     background-color: rgb(50, 50, 50);
     color: aliceblue;
@@ -74,14 +67,14 @@ body {
 }
 
 .message:focus {
-    border-color: #02055c; /* Verde do WhatsApp ao focar */
+    border-color: #02055c; /* Cor padrão (sua escolha) do botão */
 }
 
 button {
     padding: 10px 20px;
-    border-radius: 20px; /* Borda mais arredondada */
+    border-radius: 20px;
     border: none;
-    background-color: #02055c; /* Verde escuro do WhatsApp */
+    background-color: #02055c; /* Cor padrão */
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -125,4 +118,5 @@ a{
     top: 1%;
     color: aliceblue;
 }
+
 
