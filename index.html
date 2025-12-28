@@ -3,95 +3,20 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Web chat</title>
-        <meta name="description" content="An new version and updated version from WhatsApp web">
+        <title>Em manutenção...</title>
+        <meta name="description" content="O site está indisponível no momento, por favor, aguarde até uma atualização">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" href="logo.ico" type="image/x-icon">
+        <link rel="icon" href="icon.ico" type="favicon">
     </head>
-    <body>
-    
-    <div class="chat-container">
-
-        <span class="top">Conversando com <b>DANIEL</b></span>
-        
-        <textarea id="response" class="response" readonly></textarea>
-        
-        <div class="input-area">
-            <input class="message" id="chat" placeholder="Digite aqui...">
-            <button id="btnEnviar">Enviar</button>
-        </div>
-
+    <body><canvas id="canvas"></canvas>
+        <div class="text">
+    <span>Site em manutenção no momento, por favor, volte mais tarde!</span>
     </div>
-
-    <div class="credits"><span>Chat conectado a uma API do Gemini 2.5 Flash</span></div>
-
-    <div class="creator"><span class="made">Feito por Bugzin</span></div>
-        
-    <script type="module">
-    import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
-    //COLOQUE SUA API KEY AQUI
-    const API_KEY = "AIzaSyDNENFLlzzcDCPYMXivOAnx2IP_M4es8ZA";
-
-    // Selecionamos todos os elementos
-    const input = document.getElementById("chat");
-    const btn = document.getElementById("btnEnviar");
-    const responseArea = document.getElementById("response");
-
-
-    responseArea.value = "Olá! Eu sou o Daniel! Seu assistente por IA, como posso te ajudar?";
-
-    
-    async function message() {
-        const textoUsuario = input.value;
-        
-        if (!textoUsuario) return;
-
-        console.log("Enviando:", textoUsuario);
-        responseArea.value = "Aguardando resposta...";
-        input.value = "";
-        input.disabled = true;
-
-        try {
-            const genAI = new GoogleGenerativeAI(API_KEY);
-            const model = genAI.getGenerativeModel({ 
-    model: "gemini-2.5-flash", 
-    
-//Modifque para sua versão de nome/configuração de resposta
-    config: {
-        systemInstruction: "Você é um assistente de chat e seu nome é Daniel. Suas respostas devem ser curtas e diretas. Não use Markdown (negrito, itálico, listas ou cabeçalhos), pois o ambiente de saída (textarea) não os renderiza corretamente."
-    }
-});
-
-            const result = await model.generateContent(textoUsuario);
-            const response = await result.response;
-            const text = response.text();
-            
-            responseArea.value = text; 
-
-        } catch (erro) {
-            console.error(erro);
-            responseArea.value = "Um erro inesperado aconteceu, por favor, tente novamente, caso o erro persista, entre em contato com o desenvolvedor!";
-            
-        } finally {
-            input.disabled = false;
-            input.focus();
-        }
-    }
-
-    
-    btn.addEventListener("click", message);
-    input.addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            message(); 
-        }
-    });
-
-</script>
+    <div class="text2">
+    <span>Enquanto isso, que tal jogar e relaxar um pouco?</span>
+    </div>
+    <a href="https://secret-number-seven-theta.vercel.app/">Acessar</a>
+    <script src="background.js"></script>
     </body>
-
 </html>
-
-
-
